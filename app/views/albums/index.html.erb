@@ -4,14 +4,24 @@
             <td>#</td>
             <td>Title</td>
             <td>Released at</td>
+            <td>How much time ago</td>
+            <td>Songs</td>
         </tr>
     </thead>
     <tbody>
     <% @albums.each do |album| %>
         <tr>
             <td><%= album.id %></td>
-            <td><%= album.title %></td>
-            <td><%= album.released_at %></td>
+            <td><%= album.title %> (<%= album.tracks_count %>)</td>
+            <td><%= sublime_date(album.released_at) %></td>
+            <td><%= time_ago_in_words(album.released_at) %></td>
+            <td>
+                <ul>
+                    <% album.tracks.each do |track| %>
+                        <li><%= track.title %></li>
+                    <% end %>
+                </ul>    
+            </td>
         </tr>
     <% end %>
     </tbody>

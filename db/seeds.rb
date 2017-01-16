@@ -1,10 +1,12 @@
 #db/seeds.rb
 
-# require "seeds"
-1000.times do |i|
-    puts "Creating Track number #{i}"
-    Track.create({title: "Awesome track #{i}"})
+3.times do |a|
+    puts "Creating album #{a}"
+    album = Album.create({title: "Album numéro #{a}",
+                            released_at: Time.zone.now})
 
-    $text = 'Awesome track '.$i;
-    $text = "Awesome track $i";
+    12.times do |i|
+        puts "Creating Track number #{i}"
+        album.tracks.create({title: "Awesome track #{i}"})
+    end
 end
